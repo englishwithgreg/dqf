@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Quick Fix – English with Greg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CSS VARIABLES & RESET
+   ============================================================ */
+:root {
+  --red:    #B81B07;
+  --red-lt: #e02410;
+  --blue:   #016DAD;
+  --blue-dk: #015a8e;
+  --navy:   #0C1946;
+  --gold:   #F7DA00;
+  --white:  #FFFFFF;
+  --off:    #EEF5FB;
+  --text:   #0d2a3e;
+  --muted:  #4B7A99;
+  --border: rgba(1,109,173,0.12);
+  --radius: 16px;
+  --shadow: 0 4px 32px rgba(1,109,173,0.12);
+  --shadow-lg: 0 16px 64px rgba(1,109,173,0.18);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   ANNOUNCEMENT BAR
+   ============================================================ */
+.ann-bar {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.ann-bar a { color: var(--gold); text-decoration: underline; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  background: var(--blue);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  box-shadow: 0 2px 16px rgba(1,109,173,0.3);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-badge {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: #fff;
+  font-size: 1.3rem;
+}
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.logo-text span { color: var(--gold); }
+.header-cta {
+  background: var(--red);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.header-cta:hover { background: var(--red-lt); transform: translateY(-1px); }
+
+/* ============================================================
+   STICKY CTA BAR
+   ============================================================ */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--navy);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 800;
+  box-shadow: 0 -4px 24px rgba(12,25,70,0.4);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta p { color: #fff; font-size: 0.95rem; font-weight: 500; }
+.sticky-cta p strong { color: var(--gold); }
+.sticky-btn {
+  background: var(--red);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: all 0.25s;
+  animation: wiggle 4s infinite;
+}
+.sticky-btn:hover { background: var(--red-lt); transform: translateY(-2px); }
+
+@keyframes wiggle {
+  0%, 88%, 100% { transform: rotate(0); }
+  90% { transform: rotate(1.5deg); }
+  93% { transform: rotate(-1.5deg); }
+  96% { transform: rotate(1deg); }
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  background: var(--blue);
+  position: relative;
+  overflow: hidden;
+  padding: 0 24px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 80% 20%, rgba(12,25,70,0.45) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding-top: 72px;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(247,218,0,0.12);
+  border: 1px solid rgba(247,218,0,0.3);
+  color: var(--gold);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero h1 .red-word { color: var(--red); -webkit-text-fill-color: var(--red); }
+.hero h1 .blue-word { color: #5BC0F8; -webkit-text-fill-color: #5BC0F8; }
+.hero-sub {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+.hero-price-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.price-old {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: line-through;
+}
+.price-new {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--gold);
+}
+.price-new span { font-size: 1.4rem; }
+.price-note { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+.hero-btn {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 14px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  transition: all 0.25s;
+  animation: wiggle 4s infinite;
+  box-shadow: none;
+  margin-bottom: 16px;
+}
+.hero-btn:hover { background: var(--red-lt); transform: translateY(-3px); box-shadow: none; }
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.82rem;
+}
+.hero-trust::before { content: '🔒'; }
+.hero-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255,255,255,0.08);
+}
+.hero-video-wrap iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: block;
+  border: none;
+}
+.hero-badge {
+  position: absolute;
+  top: -16px; right: -16px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 0 8px 24px rgba(247,218,0,0.3);
+  z-index: 2;
+}
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+.stats-bar {
+  background: var(--off);
+  padding: 40px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.stats-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat-item strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--blue);
+}
+.stat-item span {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ============================================================
+   SECTION UTILITIES
+   ============================================================ */
+.section { padding: 80px 24px; }
+.section--dark { background: var(--blue); color: #fff; }
+.section--off { background: var(--off); }
+.section--white { background: var(--white); }
+.container { max-width: 1100px; margin: 0 auto; }
+.container--narrow { max-width: 760px; margin: 0 auto; }
+.section-label {
+  display: inline-block;
+  background: rgba(1,109,173,0.1);
+  color: var(--blue);
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section--dark .section-label {
+  background: rgba(247,218,0,0.12);
+  color: var(--gold);
+}
+h2.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+.section--dark h2.section-title { color: #fff; }
+.red { color: var(--red); }
+.blue { color: var(--blue); }
+.gold { color: var(--gold); }
+p.lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.section--dark p.lead { color: rgba(255,255,255,0.65); }
+
+/* ============================================================
+   PERSONAL NOTE
+   ============================================================ */
+.note-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.note-photo {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.note-photo img { width: 100%; }
+.note-body p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: #333;
+}
+.note-sig {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--blue);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   HOW IT WORKS – DAILY STRUCTURE
+   ============================================================ */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.day-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  border: 2px solid var(--border);
+  transition: all 0.3s;
+  cursor: default;
+}
+.day-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+.day-emoji { font-size: 2rem; margin-bottom: 12px; }
+.day-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.day-title { font-weight: 700; font-size: 0.95rem; color: var(--blue); margin-bottom: 8px; }
+.day-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+/* ============================================================
+   FEATURES GRID
+   ============================================================ */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.feature-card {
+  background: #fff;
+  border: 1px solid rgba(1,109,173,0.12);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  background: #fff;
+  border-color: rgba(1,109,173,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(1,109,173,0.15);
+}
+.feature-card h3 {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--off);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   WHAT'S INSIDE – OFFER BOX
+   ============================================================ */
+.offer-box {
+  background: var(--blue);
+  border-radius: 24px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.offer-items { list-style: none; }
+.offer-items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.offer-items li:last-child { border-bottom: none; }
+.offer-check {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(1,109,173,0.25);
+  color: #5BC0F8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.offer-item-text strong { color: #fff; font-size: 0.97rem; display: block; margin-bottom: 2px; }
+.offer-item-text span { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+.offer-price-side { text-align: center; }
+.offer-price-side .price-sticker {
+  background: rgba(247,218,0,0.08);
+  border: 2px solid rgba(247,218,0,0.3);
+  border-radius: 20px;
+  padding: 36px 32px;
+  margin-bottom: 24px;
+}
+.was { font-size: 0.9rem; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-bottom: 4px; }
+.now-label { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.now-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.now-price sup { font-size: 2rem; }
+.first-month-note { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-top: 8px; }
+.offer-btn {
+  display: block;
+  background: var(--red);
+  color: #fff;
+  padding: 18px 32px;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 14px;
+  transition: all 0.25s;
+  box-shadow: none;
+  animation: wiggle 4s infinite;
+}
+.offer-btn:hover { background: var(--red-lt); transform: translateY(-2px); box-shadow: none; }
+.guarantee-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.testi-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  position: relative;
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.testi-card::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: var(--blue);
+  opacity: 0.12;
+  position: absolute;
+  top: -8px; left: 20px;
+  line-height: 1;
+}
+.stars { color: #F59E0B; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-body { font-size: 0.95rem; line-height: 1.7; color: #444; margin-bottom: 20px; }
+.testi-body strong { color: var(--red); }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  overflow: hidden;
+}
+.testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testi-name { font-weight: 700; font-size: 0.9rem; color: var(--blue); }
+.testi-country { font-size: 0.78rem; color: var(--muted); }
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+.faq-list { margin-top: 40px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue);
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+  font-family: 'DM Sans', sans-serif;
+}
+.faq-q:hover { color: var(--blue); }
+.faq-arrow {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(1,109,173,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  transition: transform 0.3s, background 0.3s;
+  color: var(--blue);
+}
+.faq-item.open .faq-arrow {
+  transform: rotate(180deg);
+  background: var(--blue);
+  color: #fff;
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.faq-a-inner {
+  padding-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* ============================================================
+   VISION / IMAGINATION SECTION
+   ============================================================ */
+.vision-list {
+  list-style: none;
+  margin: 32px 0;
+}
+.vision-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.vision-list li:last-child { border-bottom: none; }
+.vision-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(247,218,0,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.vision-list li p { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.6; }
+.vision-list li strong { color: var(--gold); }
+
+/* ============================================================
+   GUARANTEE
+   ============================================================ */
+.guarantee-strip {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dk));
+  border-radius: 24px;
+  padding: 48px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.guarantee-badge {
+  flex-shrink: 0;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(247,218,0,0.1);
+  border: 3px solid rgba(247,218,0,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.8rem;
+}
+.guarantee-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.guarantee-text p { color: rgba(255,255,255,0.65); line-height: 1.7; font-size: 1rem; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final-cta {
+  background: var(--blue);
+  padding: 100px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 70% at 50% 100%, rgba(12,25,70,0.4), transparent);
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+  position: relative;
+}
+.final-cta p { color: rgba(255,255,255,0.6); font-size: 1.1rem; margin-bottom: 40px; position: relative; }
+.final-btn {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 22px 56px;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  transition: all 0.25s;
+  box-shadow: none;
+  animation: wiggle 4s infinite;
+  position: relative;
+}
+.final-btn:hover { background: var(--red-lt); transform: translateY(-4px); box-shadow: none; }
+.final-sub { margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.35); position: relative; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #01486f;
+  padding: 32px 24px;
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================================
+   QUOTE CALLOUT
+   ============================================================ */
+.quote-callout {
+  background: var(--off);
+  border-left: 5px solid var(--blue);
+  padding: 32px 40px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 48px 0;
+}
+.quote-callout p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--navy);
+}
+.quote-callout p em .red { color: var(--red); }
+.quote-callout p em .blue { color: var(--blue); }
+
+/* ============================================================
+   COUNTDOWN TIMER
+   ============================================================ */
+.timer-wrap {
+  margin-top: 16px;
+  background: rgba(12,25,70,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  backdrop-filter: blur(6px);
+}
+.timer-label {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.timer-digits {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.timer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 8px 18px;
+  min-width: 64px;
+}
+.timer-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.timer-unit {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 3px;
+}
+.timer-sep {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 14px;
+}
+.timer-wrap.expired .timer-num { color: var(--red); }
+.timer-wrap.expired .timer-label { color: var(--red); }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; padding-top: 48px; }
+  .hero-sub { margin: 0 auto 36px; }
+  .hero-price-block { justify-content: center; }
+  .hero-media { margin-top: 32px; }
+  .hero-badge { top: -12px; right: -8px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .days-grid { grid-template-columns: repeat(3, 1fr); }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .offer-box { grid-template-columns: 1fr; }
+  .note-grid { grid-template-columns: 1fr; }
+  .note-photo { max-width: 160px; }
+  .guarantee-strip { flex-direction: column; text-align: center; }
+}
+@media (max-width: 600px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .days-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .header-cta { display: none; }
+  .offer-box { padding: 28px 20px; }
+  .sticky-cta p { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  🎉 Special Offer: Your First Month for Just <strong>9€</strong> — <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9">Join Now →</a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-text">English <span>with Greg</span></div>
+  </div>
+  <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9" class="header-cta">Get Started – 9€</a>
+</header>
+
+<!-- STICKY CTA BAR -->
+<div class="sticky-cta" id="stickyCta">
+  <p><strong>Daily Quick Fix</strong> — First Month 9€, then €29/month. Cancel anytime.</p>
+  <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9" class="sticky-btn">Yes, I Want Fluency →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">🗓 Daily English Lessons · C1 Level</div>
+      <h1>Make Real Progress in English<br>in Just <span class="highlight">15 Minutes</span> a Day</h1>
+      <p class="hero-sub">Build a simple daily habit to move from stuck → fluent with guided lessons in grammar, vocabulary, pronunciation, and listening.</p>
+      <div class="hero-price-block">
+        <div>
+          <div class="price-old">€29/month</div>
+          <div class="price-new"><span>€</span>9</div>
+          <div class="price-note">First month · Then €29/month · Cancel anytime</div>
+        </div>
+      </div>
+      <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9" class="hero-btn">
+        Yes, I Want My First Month for 9€ →
+      </a>
+      <div class="hero-trust">30-Day Money-Back Guarantee. No questions asked.</div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-video-wrap">
+        <iframe src="https://platform.thinkific.com/videoproxy/v1/play/d6k5tc4scrts72u4blv0?autoplay=false" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="hero-badge">2,000+<br>Students<br>Worldwide</div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="timer-wrap">
+        <div class="timer-label">⏳ This special offer expires in:</div>
+        <div class="timer-digits">
+          <div class="timer-block">
+            <span class="timer-num" id="timer-min">30</span>
+            <span class="timer-unit">min</span>
+          </div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block">
+            <span class="timer-num" id="timer-sec">00</span>
+            <span class="timer-unit">sec</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <strong>2,000+</strong>
+      <span>Students</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <strong>100+</strong>
+      <span>Countries Represented</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <strong>15 min</strong>
+      <span>Per Day – That's All</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <strong>C1</strong>
+      <span>Target Level</span>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONAL NOTE -->
+<section class="section section--white">
+  <div class="container">
+    <div class="note-grid reveal">
+      <div class="note-photo">
+        <img src="https://files.cdn.thinkific.com/file_uploads/100814/images/5c5/d6e/4a4/I'm_Greg.png" alt="Greg Pioli">
+      </div>
+      <div class="note-body">
+        <div class="section-label">A Personal Note from Greg</div>
+        <h2 class="section-title">You Understand Me on YouTube...<br>So Why Is English Still Hard?</h2>
+        <p>If you're reading this, you've probably been studying English for many years. You can understand teachers like me on YouTube, but English TV still feels too fast!</p>
+        <p>Real conversations still feel stressful. And you know your English <em>should</em> be at a higher level by now… but life is busy, and you've stayed stuck at the same level.</p>
+        <p>Hey, don't worry! You're definitely not alone. I've taught thousands of adult learners and almost all of them feel exactly the same way.</p>
+        <p>That's exactly why I built <strong><span class="red">DAILY</span> <span class="blue">QUICK FIX</span></strong> — a simple daily habit you can follow in just 15 minutes to reach your fluency goals, even with your busy life.</p>
+        <div class="note-sig">~ Greg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY STUCK -->
+<section class="section section--off">
+  <div class="container--narrow reveal">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Why Most Learners Stay Stuck</h2>
+    <p class="lead">Most learners don't get stuck because of ability — they get stuck because of <em>inconsistency</em>.</p>
+    <p class="lead">Watching random videos, trying apps, or studying "whenever you have time" never creates real fluency. Without a simple daily structure, you forget what you learn, you stop practising, and you stay in the same cycle: understanding the teacher, but struggling in fast, real conversations.</p>
+    <p class="lead" style="font-weight:700; color: var(--navy);">That's where <span class="red">Daily Quick Fix</span> changes everything.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section--white">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom: 8px;">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">One Lesson a Day. Five Skills a Week.</h2>
+      <p class="lead" style="max-width:600px; margin: 0 auto;">Your weekly roadmap to fluency — structured, consistent, and achievable in 15 minutes a day.</p>
+    </div>
+    <div class="days-grid">
+      <div class="day-card reveal reveal-delay-1">
+        <div class="day-emoji">🗣️</div>
+        <div class="day-label">Monday</div>
+        <div class="day-title">Pronunciation</div>
+        <div class="day-desc">Sound clear and confident when speaking English.</div>
+      </div>
+      <div class="day-card reveal reveal-delay-2">
+        <div class="day-emoji">📖</div>
+        <div class="day-label">Tuesday</div>
+        <div class="day-title">Vocabulary</div>
+        <div class="day-desc">Learn the words you actually need to express yourself.</div>
+      </div>
+      <div class="day-card reveal reveal-delay-3">
+        <div class="day-emoji">📐</div>
+        <div class="day-label">Wednesday</div>
+        <div class="day-title">Grammar Video + Quiz</div>
+        <div class="day-desc">Exclusive lessons that help you express yourself accurately.</div>
+      </div>
+      <div class="day-card reveal reveal-delay-4">
+        <div class="day-emoji">🎙️</div>
+        <div class="day-label">Thursday</div>
+        <div class="day-title">Shadowing</div>
+        <div class="day-desc">Train your ear and mouth to sound like a natural English speaker.</div>
+      </div>
+      <div class="day-card reveal">
+        <div class="day-emoji">🎧</div>
+        <div class="day-label">Friday</div>
+        <div class="day-title">Listening Practice</div>
+        <div class="day-desc">Finally understand fast native speakers easily.</div>
+      </div>
+      <div class="day-card reveal reveal-delay-1">
+        <div class="day-emoji">🔁</div>
+        <div class="day-label">Monthly</div>
+        <div class="day-title">Review & Consolidate</div>
+        <div class="day-desc">Lock in everything you've learned so it sticks for good.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">What's Inside</div>
+      <h2 class="section-title">Everything You Need for Fluency</h2>
+      <p class="lead" style="max-width:580px; margin: 0 auto;">When you join Daily Quick Fix, you get instant access to:</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🗣️</div>
+        <h3>Pronunciation & Shadowing</h3>
+        <p>Sound clear and confident when speaking English with native-like rhythm and connected speech.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">📖</div>
+        <h3>Vocabulary Lessons</h3>
+        <p>Learn the words and phrases you actually need to express yourself naturally in real conversations.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🎬</div>
+        <h3>Weekly Grammar Video + Quizzes</h3>
+        <p>Exclusive video lessons that help you express yourself accurately and without embarrassing mistakes.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🎧</div>
+        <h3>Listening Exercises</h3>
+        <p>Finally understand fast native speakers easily with targeted ear-training practice.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">📱</div>
+        <h3>Ask Greg via WhatsApp</h3>
+        <p>Ask me all your English questions directly. No AI chatbots — real answers from your teacher.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🌍</div>
+        <h3>Global Community</h3>
+        <p>Join a private WhatsApp community of adult learners from 100+ countries for extra real-life practice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER BOX -->
+<section class="section section--off">
+  <div class="container">
+    <div class="offer-box reveal">
+      <div>
+        <div class="section-label">Join Today and Get</div>
+        <h2 class="section-title" style="margin-bottom:28px;">Everything You Need,<br>For Less Than a Coffee</h2>
+        <ul class="offer-items">
+          <li>
+            <div class="offer-check">✓</div>
+            <div class="offer-item-text">
+              <strong>🚀 Instant Access to Daily Quick Fix</strong>
+              <span>Value: €29/month</span>
+            </div>
+          </li>
+          <li>
+            <div class="offer-check">✓</div>
+            <div class="offer-item-text">
+              <strong>✨ "Ask Greg" WhatsApp Group</strong>
+              <span>Value: €29/month</span>
+            </div>
+          </li>
+          <li>
+            <div class="offer-check">✓</div>
+            <div class="offer-item-text">
+              <strong>✨ Private WhatsApp Community</strong>
+              <span>Value: €19/month</span>
+            </div>
+          </li>
+          <li>
+            <div class="offer-check">✓</div>
+            <div class="offer-item-text">
+              <strong>📘 BONUS! Quick Fix Planner PDF</strong>
+              <span>Value: €19 — Free Today</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="offer-price-side">
+        <div class="price-sticker">
+          <div class="was">Normally €29/month</div>
+          <div class="now-label">Your First Month</div>
+          <div class="now-price"><sup>€</sup>9</div>
+          <div class="first-month-note">Then €29/month · Cancel anytime</div>
+        </div>
+        <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9" class="offer-btn">
+          Yes, I Want My First Month for 9€ →
+        </a>
+        <div class="guarantee-note">🔒 30-Day Money-Back Guarantee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section--white">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Real Students, Real Results</div>
+      <h2 class="section-title">What My Students Are Saying</h2>
+      <p class="lead" style="max-width:540px; margin: 0 auto;">Over 2,000 learners from 100+ countries have already joined!</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-body">Daily Quick Fix is a <strong>brilliant method</strong> to improve my English in every aspect. The daily lessons are very constructive, and it's a <strong>perfect mix</strong> of grammar, pronunciation, and vocabulary. It <strong>keeps me consistent</strong>. I highly recommend it!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://files.cdn.thinkific.com/file_uploads/100814/images/e23/86a/5e9/Andrius_Daily_Quick_Fix_Student.png" alt="Andrius">
+          </div>
+          <div>
+            <div class="testi-name">Andrius</div>
+            <div class="testi-country">🇧🇾 Belarus</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-body">This is the <strong>easy way to learn</strong> and improve your English. You can learn anytime and anywhere! I'm properly <strong>addicted to it!</strong></p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://files.cdn.thinkific.com/file_uploads/100814/images/fb4/545/eeb/Vladlena_Daily_Quick_Fix_Student.png" alt="Vladlena">
+          </div>
+          <div>
+            <div class="testi-name">Vladlena</div>
+            <div class="testi-country">🇩🇪 Germany</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="stars">★★★★★</div>
+        <p class="testi-body">Without realising, I had <strong>always been looking for something like your WhatsApp community.</strong> It's amazing to see everyone happily chatting around and connecting with each other.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <img src="https://files.cdn.thinkific.com/file_uploads/100814/images/5c3/cc0/6e1/DQF_Marvin.png" alt="Marvin">
+          </div>
+          <div>
+            <div class="testi-name">Marvin</div>
+            <div class="testi-country">🇱🇹 Lithuania</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--off">
+  <div class="container--narrow">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Yeah, I know what you're thinking…</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">"I don't have time." <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Perfect — you only need 10–15 minutes a day. If you can't do it every day, don't worry! This course was designed to be the most flexible way to learn English... and it is!</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">"I don't want another subscription." <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Unlike most subscriptions, this one pays you back every single day — in fluency, confidence, and new opportunities. And you can cancel anytime with just 3 clicks.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">"I don't have the right level." <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">If you understand most of what I say on YouTube and learn something new from my videos, Daily Quick Fix is exactly right for your level. And if it's not, you've got 30 days to try it risk-free.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">"Is 15 minutes really enough?" <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes — if you're consistent. I've designed the content so it focuses on the <em>exact</em> skills that will make a real difference to your English... without ever making you feel overwhelmed!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / IMAGINE -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="reveal" style="max-width:680px; margin: 0 auto; text-align:center;">
+      <div class="section-label">Your Future Self</div>
+      <h2 class="section-title">Imagine This…</h2>
+      <p class="lead">Six months from now, if you start today:</p>
+    </div>
+    <div class="reveal" style="max-width:680px; margin: 32px auto 0;">
+      <ul class="vision-list">
+        <li>
+          <div class="vision-icon">📺</div>
+          <p>You're watching your favourite show in English — and you actually understand it <strong>without subtitles.</strong></p>
+        </li>
+        <li>
+          <div class="vision-icon">💬</div>
+          <p>You're chatting with colleagues or friends in English — <strong>no panic</strong>, no hesitation.</p>
+        </li>
+        <li>
+          <div class="vision-icon">🎤</div>
+          <p>Your pronunciation is <strong>clear</strong>. People stop asking you to repeat yourself.</p>
+        </li>
+        <li>
+          <div class="vision-icon">⭐</div>
+          <p>You finally feel <strong>proud</strong> of your English.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="quote-callout reveal" style="background: rgba(255,255,255,0.05); border-left-color: var(--gold); margin: 48px auto 0; max-width: 680px;">
+      <p style="color:#fff;"><em>"Six months from now, you will either have six months of <span style="background: linear-gradient(to top, #e05555 35%, transparent 35%); padding: 0 2px;">excuses</span>…<br>or six months of <span style="background: linear-gradient(to top, #5BC0F8 35%, transparent 35%); padding: 0 2px;">progress</span>."</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section section--white">
+  <div class="container">
+    <div class="guarantee-strip reveal">
+      <div class="guarantee-badge">🛡️</div>
+      <div class="guarantee-text">
+        <h3>You're 100% Protected</h3>
+        <p>If Daily Quick Fix is not right for you, just email me within 30 days and I'll refund every penny — no questions asked. Try it for a month, risk free. <strong>If you don't love it, you don't pay.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div style="position:relative; z-index:1;">
+    <div class="section-label" style="background:rgba(247,218,0,0.12); color:var(--gold);">From Stuck to Fluent</div>
+    <h2>Start Your Journey Today<br>for Just <span style="color:var(--gold);">9€</span></h2>
+    <p>Join 2,000+ learners in 100+ countries. 15 minutes a day. Real results.</p>
+    <a href="https://englishwithgreg.samcart.com/products/pay-monthly-29?coupon=Start-Now-9" class="final-btn">
+      Yes, I Want My First Month for 9€ →
+    </a>
+    <p class="final-sub">🔒 30-Day Money-Back Guarantee · Cancel Anytime · No Questions Asked</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© English with Greg · <a href="https://learn.englishwithgreg.com" style="color:rgba(255,255,255,0.5); text-decoration:underline;">learn.englishwithgreg.com</a></p>
+</footer>
+
+<script>
+// Countdown timer — 30 minutes, resets on every page load
+(function() {
+  var total = 30 * 60; // 1800 seconds
+  var minEl = document.getElementById('timer-min');
+  var secEl = document.getElementById('timer-sec');
+  var wrap  = document.querySelector('.timer-wrap');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    if (total <= 0) {
+      minEl.textContent = '00';
+      secEl.textContent = '00';
+      wrap.classList.add('expired');
+      wrap.querySelector('.timer-label').textContent = '⚠️ Offer may have expired — grab it now!';
+      return;
+    }
+    var m = Math.floor(total / 60);
+    var s = total % 60;
+    minEl.textContent = pad(m);
+    secEl.textContent = pad(s);
+    total--;
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// Sticky CTA
+const sticky = document.getElementById('stickyCta');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) sticky.classList.add('visible');
+  else sticky.classList.remove('visible');
+}, { passive: true });
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      item.querySelector('.faq-a').style.maxHeight = item.querySelector('.faq-a').scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>
